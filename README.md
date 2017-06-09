@@ -8,3 +8,4 @@ Contains the following images:
   * [erlang-runtime-base](erlang-runtime-base/) [![](https://images.microbadger.com/badges/image/easymile/erlang-runtime-base.svg)](https://microbadger.com/images/easymile/erlang-runtime-base "Get your own image badge on microbadger.com")
 * For CI purpose:
   * [yarn-flow](yarn-flow/) [![](https://images.microbadger.com/badges/image/easymile/yarn-flow.svg)](https://microbadger.com/images/easymile/yarn-flow "Get your own image badge on microbadger.com")
+  * [erlang-build-base](erlang-build-base/) [![](https://images.microbadger.com/badges/image/easymile/yarn-flowerlang-build-base.svg)](https://microbadger.com/images/easymile/yarn-flowerlang-build-base "Get your own image badge on microbadger.com")

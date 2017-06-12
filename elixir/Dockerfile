@@ -1,6 +1,6 @@
-FROM easymile/erlang-build-base:19.3
+FROM easymile/erlang:19.3
 
-MAINTAINER frederic.cabestre@easymile.com
+MAINTAINER frederic.cabestre [at] easymile.com
 
 ENV ELIXIR_VERSION 1.4.4
 

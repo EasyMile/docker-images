@@ -2,13 +2,18 @@ FROM easymile/elixir:1.4.4
 
 MAINTAINER frederic.cabestre [at] easymile.com
 
+RUN addgroup builder -g 1000 && \
+    adduser builder -u 1000 -s /bin/ash -SDG builder && \
+    apk add --update sudo && \
+    echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-WORKDIR /build
+USER builder
+WORKDIR /home/builder
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-    apk add --no-cache --update \
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" | sudo tee -a /etc/apk/repositories && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" | sudo tee -a /etc/apk/repositories && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" | sudo tee -a /etc/apk/repositories && \
+    sudo apk add --no-cache --update \
     nodejs \
     nodejs-npm \
     protobuf \
@@ -23,18 +28,20 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositori
     ocamlbuild \
     # Required to build `node-sass`
     python2 && \
-    npm install -g yarn && \
+
+    sudo npm install -g yarn && \
     # Build flow
     git clone --depth 1 --branch v0.44.1 https://github.com/facebook/flow.git && \
     cd flow && \
     make && \
-    cp bin/flow /usr/bin/flow && \
+    sudo cp bin/flow /usr/bin/flow && \
     rm -rf flow && \
     cd .. && \
-    apk del --no-cache alpine-sdk diffutils elfutils-dev ncurses ocaml ocamlbuild && \
-
-    asdf local erlang "$ERLANG_VERSION" && \
-    asdf local elixir "$ELIXIR_VERSION" && \
+    
+    sudo chown builder. -R /usr/local/asdf && \
+    sudo apk del --no-cache alpine-sdk diffutils elfutils-dev ncurses ocaml ocamlbuild && \
+    asdf global erlang "$ERLANG_VERSION" && \
+    asdf global elixir "$ELIXIR_VERSION" && \
     mix local.hex --force && \
     mix local.rebar --force && \
 
@@ -44,12 +51,4 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositori
     cd .. && \
     mix dialyzer && \
     rm -rf dialyxir && \
-    rm -rf /usr/local/asdf/installs/elixir/"$ELIXIR_VERSION"/.mix/archives/$(mix archive | grep '* dialyxir' | cut -d ' ' -f 2) && \
-    # Add user
-    addgroup builder -g 1000 && \
-    adduser builder -u 1000 -s /bin/ash -SDG builder && \
-    apk add sudo && \
-    echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-USER builder
-WORKDIR /build/source
+    rm -rf /usr/local/asdf/installs/elixir/"$ELIXIR_VERSION"/.mix/archives/$(mix archive | grep '* dialyxir' | cut -d ' ' -f 2)

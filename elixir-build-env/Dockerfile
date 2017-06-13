@@ -2,7 +2,6 @@ FROM easymile/elixir:1.4.4
 
 MAINTAINER frederic.cabestre [at] easymile.com
 
-ADD entrypoint.sh /entrypoint.sh
 
 WORKDIR /build
 
@@ -13,7 +12,6 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositori
     nodejs \
     nodejs-npm \
     protobuf \
-    su-exec \
     # Required to build `flow`
     alpine-sdk \
     diffutils \
@@ -46,10 +44,12 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositori
     cd .. && \
     mix dialyzer && \
     rm -rf dialyxir && \
-    rm -rf /usr/local/asdf/installs/elixir/"$ELIXIR_VERSION"/.mix/archives/$(mix archive | grep '* dialyxir' | cut -d ' ' -f 2)
+    rm -rf /usr/local/asdf/installs/elixir/"$ELIXIR_VERSION"/.mix/archives/$(mix archive | grep '* dialyxir' | cut -d ' ' -f 2) && \
+    # Add user
+    addgroup builder -g 1000 && \
+    adduser builder -u 1000 -s /bin/ash -SDG builder && \
+    apk add sudo && \
+    echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+USER builder
 WORKDIR /build/source
-
-ENV USER=1000 GROUP=1000
-
-ENTRYPOINT ["/entrypoint.sh"]

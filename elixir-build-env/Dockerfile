@@ -45,7 +45,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" | sudo tee -a /etc/apk
     cabal update && \
     cabal install ShellCheck && \
     sudo cp .cabal/bin/shellcheck /usr/bin/shellcheck && \
-    rm -rf .cabal/bin/shellcheck
+    rm -rf .cabal/bin/shellcheck && \
 
     sudo chown builder. -R /usr/local/asdf && \
     sudo apk del --no-cache alpine-sdk diffutils elfutils-dev ncurses ocaml ocamlbuild cabal ghc && \

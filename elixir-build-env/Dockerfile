@@ -27,7 +27,10 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" | sudo tee -a /etc/apk
     ocaml \
     ocamlbuild \
     # Required to build `node-sass`
-    python2 && \
+    python2 \
+    # Required to build `ShellCheck`
+    ghc \
+    cabal && \
 
     sudo npm install -g yarn && \
     # Build flow
@@ -35,11 +38,17 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" | sudo tee -a /etc/apk
     cd flow && \
     make && \
     sudo cp bin/flow /usr/bin/flow && \
-    rm -rf flow && \
     cd .. && \
-    
+    rm -rf flow && \
+
+    # Build ShellCheck
+    cabal update && \
+    cabal install ShellCheck && \
+    sudo cp .cabal/bin/shellcheck /usr/bin/shellcheck && \
+    rm -rf .cabal/bin/shellcheck
+
     sudo chown builder. -R /usr/local/asdf && \
-    sudo apk del --no-cache alpine-sdk diffutils elfutils-dev ncurses ocaml ocamlbuild && \
+    sudo apk del --no-cache alpine-sdk diffutils elfutils-dev ncurses ocaml ocamlbuild cabal ghc && \
     asdf global erlang "$ERLANG_VERSION" && \
     asdf global elixir "$ELIXIR_VERSION" && \
     mix local.hex --force && \

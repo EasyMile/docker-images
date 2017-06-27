@@ -11,3 +11,5 @@ Contains the following images:
   * [erlang](erlang/) [![](https://images.microbadger.com/badges/image/easymile/erlang.svg)](https://microbadger.com/images/easymile/erlang "Get your own image badge on microbadger.com")
   * [elixir](elixir/) [![](https://images.microbadger.com/badges/image/easymile/elixir.svg)](https://microbadger.com/images/easymile/elixir "Get your own image badge on microbadger.com")
   * [elixir-build-env](elixir-build-env/) [![](https://images.microbadger.com/badges/image/easymile/elixir-build-env.svg)](https://microbadger.com/images/easymile/elixir-build-env "Get your own image badge on microbadger.com")
+* Misc:
+  * [smashing](smashing/) [![](https://images.microbadger.com/badges/image/easymile/smashing.svg)]

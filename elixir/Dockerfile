@@ -1,8 +1,8 @@
-FROM easymile/erlang:19.3
+FROM easymile/erlang:20.0
 
 MAINTAINER frederic.cabestre [at] easymile.com
 
-ENV ELIXIR_VERSION 1.4.4
+ENV ELIXIR_VERSION 1.4.5
 
 WORKDIR /usr/local
 

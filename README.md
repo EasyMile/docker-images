@@ -12,5 +12,6 @@ Contains the following images:
   * [gplusplus-build-env](gplusplus-build-env/) [![](https://images.microbadger.com/badges/image/easymile/gplusplus-build-env.svg)](https://microbadger.com/images/easymile/gplusplus-build-env "Get your own image badge on microbadger.com")
   * [erlang](erlang/) [![](https://images.microbadger.com/badges/image/easymile/erlang.svg)](https://microbadger.com/images/easymile/erlang "Get your own image badge on microbadger.com")
   * [yarn-flow](yarn-flow/) [![](https://images.microbadger.com/badges/image/easymile/yarn-flow.svg)](https://microbadger.com/images/easymile/yarn-flow "Get your own image badge on microbadger.com")
+  * [selenium](selenium/) [![](https://images.microbadger.com/badges/image/easymile/selenium.svg)](https://microbadger.com/images/easymile/selenium "Get your own image badge on microbadger.com")
 * Misc:
-  * [smashing](smashing/) [![](https://images.microbadger.com/badges/image/easymile/smashing.svg)]
+  * [smashing](smashing/) [![](https://images.microbadger.com/badges/image/easymile/smashing.svg)](https://microbadger.com/images/easymile/smashing "Get your own image badge on microbadger.com")

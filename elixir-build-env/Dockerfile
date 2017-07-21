@@ -52,12 +52,4 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" | sudo tee -a /etc/apk
     asdf global erlang "$ERLANG_VERSION" && \
     asdf global elixir "$ELIXIR_VERSION" && \
     mix local.hex --force && \
-    mix local.rebar --force && \
-
-    git clone https://github.com/jeremyjh/dialyxir && \
-    cd dialyxir && \
-    MIX_ENV=prod mix do compile, archive.build, archive.install --force && \
-    cd .. && \
-    mix dialyzer && \
-    rm -rf dialyxir && \
-    rm -rf /usr/local/asdf/installs/elixir/"$ELIXIR_VERSION"/.mix/archives/$(mix archive | grep '* dialyxir' | cut -d ' ' -f 2)
+    mix local.rebar --force

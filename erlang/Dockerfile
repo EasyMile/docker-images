@@ -3,7 +3,7 @@ FROM alpine:3.6
 MAINTAINER frederic.cabestre [at] easymile.com
 
 ENV PATH="/usr/local/asdf/bin:/usr/local/asdf/shims:$PATH" \
-    ERLANG_VERSION=20.0
+    ASDF_ERLANG_VERSION=20.0
 
 WORKDIR /usr/local
 
@@ -28,7 +28,7 @@ RUN apk add --no-cache --update \
 
     git clone https://github.com/asdf-vm/asdf.git /usr/local/asdf --branch v0.2.0 && \
     asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git && \
-    asdf install erlang "$ERLANG_VERSION" && \
+    asdf install erlang "$ASDF_ERLANG_VERSION" && \
 
     apk del --no-cache dpkg-dev autoconf libssh-dev openssl-dev ncurses-dev && \
     rm -rf /var/cache/apk/*

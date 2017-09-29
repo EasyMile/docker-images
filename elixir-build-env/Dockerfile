@@ -1,4 +1,4 @@
-FROM easymile/elixir:1.5.0_1
+FROM easymile/elixir:1.5.2
 
 MAINTAINER frederic.cabestre [at] easymile.com
 

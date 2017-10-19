@@ -5,7 +5,8 @@ MAINTAINER frederic.cabestre [at] easymile.com
 RUN apk add --no-cache --update \
         ca-certificates=20161130-r2 \
         libcrypto1.0=1.0.2k-r0 \
-        ncurses-libs=6.0-r8 && \
+        ncurses-libs=6.0_p20170930-r0 \
+        bash=4.3.48-r1 && \
         rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/release/bin/boot"]

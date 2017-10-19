@@ -1,4 +1,4 @@
-FROM easymile/elixir:1.5.2
+FROM easymile/elixir:1.5.2_1
 
 MAINTAINER frederic.cabestre [at] easymile.com
 
@@ -14,8 +14,9 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" | sudo tee -a /etc/apk
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" | sudo tee -a /etc/apk/repositories && \
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" | sudo tee -a /etc/apk/repositories && \
     sudo apk add --no-cache --update \
-    nodejs=6.11.3-r0 \
-    nodejs-npm=6.11.3-r0 \
+    jq=1.5-r3 \
+    nodejs=6.11.4-r0 \
+    nodejs-npm=6.11.4-r0 \
     protobuf=3.3.2-r1 \
     # Required to build `flow`
     alpine-sdk=0.5-r0 \

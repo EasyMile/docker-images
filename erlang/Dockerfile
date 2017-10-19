@@ -12,14 +12,14 @@ RUN apk add --no-cache --update \
     # Erlang Build dependencies, removed in the end
     autoconf=2.69-r0 \
     bash=4.3.48-r1 \
-    curl=7.55.0-r0 \
+    curl=7.56.0-r0 \
     dpkg-dev=1.18.23-r2 \
     g++=6.3.0-r4 \
     gcc=6.3.0-r4 \
     git=2.13.5-r0 \
     libssh-dev=0.7.5-r1 \
     make=4.2.1-r0 \
-    ncurses-dev=6.0-r8 \
+    ncurses-dev=6.0_p20170930-r0 \
     openssl-dev=1.0.2k-r0 \
 
     # Runtime dependencies

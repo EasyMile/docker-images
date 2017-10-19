@@ -1,4 +1,4 @@
-FROM easymile/erlang:20.1
+FROM easymile/erlang:20.1_1
 
 MAINTAINER frederic.cabestre [at] easymile.com
 

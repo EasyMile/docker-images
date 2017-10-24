@@ -15,3 +15,4 @@ Contains the following images:
   * [selenium](selenium/) [![](https://images.microbadger.com/badges/image/easymile/selenium.svg)](https://microbadger.com/images/easymile/selenium "Get your own image badge on microbadger.com")
 * Misc:
   * [smashing](smashing/) [![](https://images.microbadger.com/badges/image/easymile/smashing.svg)](https://microbadger.com/images/easymile/smashing "Get your own image badge on microbadger.com")
+  * [ez-rtsp-server](ez-rtsp-server/) [![](https://images.microbadger.com/badges/image/easymile/ez-rtsp-server.svg)](https://microbadger.com/images/easymile/ez-rtsp-server "Get your own image badge on microbadger.com")

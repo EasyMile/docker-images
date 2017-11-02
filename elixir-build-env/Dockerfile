@@ -1,4 +1,4 @@
-FROM easymile/elixir:1.5.2_1
+FROM easymile/elixir:1.5.3
 
 MAINTAINER frederic.cabestre [at] easymile.com
 
@@ -33,9 +33,9 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" | sudo tee -a /etc/apk
     ghc=8.0.2-r6 \
     cabal=1.24.0.2-r1 && \
 
-    sudo npm install -g yarn@0.27.5 && \
+    sudo npm install -g yarn@1.2.1 && \
     # Build flow
-    git clone --depth 1 --branch v0.44.1 https://github.com/facebook/flow.git && \
+    git clone --depth 1 --branch v0.58.0 https://github.com/facebook/flow.git && \
     cd flow && \
     make && \
     sudo cp bin/flow /usr/bin/flow && \

@@ -19,3 +19,4 @@ WORKDIR build
 RUN cmake ../ez-rtsp-server && make
 
 ENTRYPOINT ["./SimpleRtspServer", "--port", "8554"]
+EXPOSE 8554

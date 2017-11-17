@@ -15,7 +15,10 @@ RUN dnf install -y \
     catch-devel
 
 RUN git clone https://github.com/EasyMile/ez-rtsp-server.git
-WORKDIR build
+WORKDIR ez-rtsp-server
+RUN git checkout 5eb7a33ed01f3e6c76cd3094ab228d87a740cebf
+
+WORKDIR ../build
 RUN cmake ../ez-rtsp-server && make
 
 ENTRYPOINT ["./SimpleRtspServer", "--port", "8554"]

@@ -20,7 +20,7 @@ WORKDIR /home/user
 
 RUN git clone https://github.com/EasyMile/ez-rtsp-server.git
 WORKDIR ez-rtsp-server
-RUN git checkout 5eb7a33ed01f3e6c76cd3094ab228d87a740cebf
+RUN git checkout 6ae2edd3b2760be56b211d758fd330fcf7856a0d
 
 RUN mkdir ../build
 WORKDIR ../build

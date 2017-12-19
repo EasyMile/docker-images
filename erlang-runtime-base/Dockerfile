@@ -6,12 +6,12 @@ COPY Easymile-Root-Certificate-Authority-G1.crt /usr/local/share/ca-certificates
 
 RUN apk add --no-cache --update \
         ca-certificates=20161130-r2 \
-        libcrypto1.0=1.0.2m-r0 \
-        openssl=1.0.2m-r0 \
+        libcrypto1.0=1.0.2n-r0 \
+        openssl=1.0.2n-r0 \
         ncurses-libs=6.0_p20170930-r0 \
         bash=4.3.48-r1 \
         jq=1.5-r3 \
-        curl=7.56.1-r0 && \
+        curl=7.57.0-r0 && \
         rm -rf /var/cache/apk/* && \
         update-ca-certificates
 

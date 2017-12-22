@@ -19,6 +19,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" | sudo tee -a /etc/apk
     # Required to build `ShellCheck`
     ghc=8.0.2-r6 \
     cabal=1.24.0.2-r1 \
+    libffi=3.2.1-r4 \
     && \
     # Build ShellCheck
     cabal update && \

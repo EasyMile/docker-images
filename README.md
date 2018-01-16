@@ -6,6 +6,7 @@ Public docker images
 Contains the following images:
 * For Runtime purpose:
   * [erlang-runtime-base](erlang-runtime-base/) [![](https://images.microbadger.com/badges/image/easymile/erlang-runtime-base.svg)](https://microbadger.com/images/easymile/erlang-runtime-base "Get your own image badge on microbadger.com")
+    * [erlang-helm](erlang-helm/) [![](https://images.microbadger.com/badges/image/easymile/erlang-helm.svg)](https://microbadger.com/images/easymile/erlang-helm "Get your own image badge on microbadger.com")
 * For CI purpose:
   * [elixir-build-env](elixir-build-env/) [![](https://images.microbadger.com/badges/image/easymile/elixir-build-env.svg)](https://microbadger.com/images/easymile/elixir-build-env "Get your own image badge on microbadger.com")
   * [elixir](elixir/) [![](https://images.microbadger.com/badges/image/easymile/elixir.svg)](https://microbadger.com/images/easymile/elixir "Get your own image badge on microbadger.com")

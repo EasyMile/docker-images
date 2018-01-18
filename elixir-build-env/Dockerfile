@@ -1,4 +1,4 @@
-FROM easymile/elixir:1.5.2_1
+FROM easymile/elixir:1.6.0
 
 MAINTAINER frederic.cabestre [at] easymile.com
 
@@ -10,12 +10,9 @@ RUN addgroup builder -g 1000 && \
 USER builder
 WORKDIR /home/builder
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" | sudo tee -a /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" | sudo tee -a /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" | sudo tee -a /etc/apk/repositories && \
-    sudo apk add --no-cache --update \
-    jq=1.5-r3 \
-    protobuf=3.5.0-r1 \
+RUN sudo apk add --no-cache --update \
+    jq=1.5-r4 \
+    protobuf=3.4.1-r1 \
     # Required to build `ShellCheck`
     ghc=8.0.2-r6 \
     cabal=1.24.0.2-r1 \

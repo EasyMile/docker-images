@@ -1,4 +1,4 @@
-FROM easymile/elixir-build-env:1.6.3
+FROM easymile/elixir-build-env:1.6.4
 
 MAINTAINER frederic.cabestre [at] easymile.com
 

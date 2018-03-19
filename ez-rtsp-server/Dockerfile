@@ -1,4 +1,4 @@
-FROM fedora:25
+FROM fedora:27
 MAINTAINER David Wagner <david.wagner@easymile.com>
 
 RUN echo "fastestmirror=True" >> /etc/dnf/dnf.conf

@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM easymile/elixir:1.7.1
 
 MAINTAINER frederic.cabestre [at] easymile.com
 
@@ -51,21 +51,20 @@ USER builder
 WORKDIR /home/builder
 
 RUN sudo apk add --no-cache --update \
-    jq=1.5-r4 \
-    protobuf=3.4.1-r1 \
+    jq=1.6_rc1-r1 \
+    protobuf=3.5.2-r0 \
     # Required to build `ShellCheck`
-    ghc=8.0.2-r6 \
-    cabal=1.24.0.2-r1 \
-    libffi=3.2.1-r4 \
-    && \
+    ghc=8.4.3-r0 \
+    cabal=2.2.0.0-r0 \
+    libffi=3.2.1-r4 && \
     # Build ShellCheck
     cabal update && \
-    cabal install ShellCheck-0.4.6 && \
+    cabal install ShellCheck-0.5.0 && \
     sudo cp .cabal/bin/shellcheck /usr/bin/shellcheck && \
     rm -rf .cabal/bin/shellcheck && \
 
     sudo chown builder. -R /usr/local/asdf && \
-    sudo apk del --no-cache alpine-sdk diffutils elfutils-dev ncurses opam ocaml cabal ghc && \
+    sudo apk del --no-cache cabal ghc && \
     sudo rm -rf /var/cache/apk/* && \
     asdf global erlang "$ASDF_ERLANG_VERSION" && \
     asdf global elixir "$ELIXIR_VERSION" && \

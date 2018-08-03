@@ -1,6 +1,6 @@
 # erlang-runtime-base
 
-Based on alpine, contains: 
+Based on alpine, contains:
 * ca-certificates
 * libcrypto1.0
 * ncurses-libs

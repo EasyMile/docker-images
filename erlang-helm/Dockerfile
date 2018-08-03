@@ -1,4 +1,4 @@
-FROM easymile/erlang-runtime-base:1.7
+FROM easymile/erlang-runtime-base:1.8
 
 ADD https://github.com/kubernetes/kops/releases/download/1.8.0/kops-linux-amd64 /usr/bin/kops
 ADD https://dl.k8s.io/v1.8.5/kubernetes-client-linux-386.tar.gz /tmp/kubernetes-client-linux.tar.gz
@@ -10,7 +10,7 @@ RUN tar xvzf /helm && \
   cp /linux-amd64/helm /usr/bin/helm && \
   chmod +x /usr/bin/* && \
   # LIBFFI and OPENSSL for pki.py, to remove once elixir-ed
-  apk --update add python3=3.6.3-r9 python3-dev=3.6.3-r9 musl-dev=1.1.18-r2 libffi-dev=3.2.1-r4 openssl-dev=1.0.2n-r0 gcc=6.4.0-r5 && \
+  apk --update add python3=3.6.4-r1 python3-dev=3.6.4-r1 musl-dev=1.1.19-r10 libffi-dev=3.2.1-r4 openssl-dev=1.0.2o-r2 gcc=6.4.0-r8 && \
   python3 -m ensurepip && \
   rm -r /usr/lib/python*/ensurepip && \
   pip3 install --upgrade pip setuptools && \

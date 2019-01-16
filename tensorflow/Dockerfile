@@ -3,6 +3,7 @@
 # example of how to run docker:
 # docker run --runtime=nvidia -ti -u $(id -u):$(id -g) -v /home/yannick/:/home/yannick
 
+
 ARG UBUNTU_VERSION=16.04
 
 FROM nvidia/cuda:10.0-devel-ubuntu"${UBUNTU_VERSION}" as base

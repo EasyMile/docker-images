@@ -52,7 +52,7 @@ ENV TF_CUDNN_VERSION=7
 
 # Check out TensorFlow source code if --build_arg CHECKOUT_TENSORFLOW=1
 ARG CHECKOUT_TF_SRC=0
-RUN test "${CHECKOUT_TF_SRC}" -eq 1 && git clone --branch=r1.12 --depth=1 https://github.com/tensorflow/tensorflow.git /tensorflow
+RUN test "${CHECKOUT_TF_SRC}" -eq 1 && git clone --branch=r1.13 --depth=1 https://github.com/tensorflow/tensorflow.git /tensorflow
 
 ARG USE_PYTHON_3_NOT_2
 ARG _PY_SUFFIX=${USE_PYTHON_3_NOT_2:+3.6}
@@ -121,21 +121,11 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 ENV LD_LIBRARY_PATH /usr/local/cuda/lib64/stubs:$LD_LIBRARY_PATH
 
 WORKDIR /tensorflow
-# new Bazel expects .rc files in different locations:
-# RUN rm .bazelrc
-RUN mv tools/bazel.rc .bazelrc
 
 # NCCL 2.x
 ENV TF_NCCL_VERSION=2
 
 RUN tensorflow/tools/ci_build/builds/configured GPU
-
-#### apply patch, ref: https://github.com/tensorflow/tensorflow/issues/23853
-COPY 0001-TF.patch /tmp/0001-TF.patch
-RUN git config --global user.email "dev@easymile.com"
-RUN git config --global user.name "EasyMile"
-RUN git am /tmp/0001-TF.patch
-
 
 # Compiling .whl as well as c api (avx2 did not show any speed improvements)
 #RUN bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-mfpmath=both --copt=-msse4.2 --config=cuda \

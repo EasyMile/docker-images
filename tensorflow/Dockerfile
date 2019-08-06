@@ -1,5 +1,7 @@
-# example on how to build this docker:
+# example of how to build this docker:
 # docker build -t tensorflowem --build-arg CHECKOUT_TF_SRC=1 --build-arg USE_PYTHON_3_NOT_2=1 . 
+# example of how to run docker:
+# docker run --runtime=nvidia -ti -u $(id -u):$(id -g) -v /home/yannick/:/home/yannick
 
 ARG UBUNTU_VERSION=16.04
 
@@ -29,7 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zip \
         zlib1g-dev \
         wget \
-		curl \
+        curl \
         git \
         && \
     find /usr/local/cuda-10.0/lib64/ -type f -name 'lib*_static.a' -not -name 'libcudart_static.a' -delete && \
@@ -87,14 +89,14 @@ RUN apt-get update && apt-get install -y \
 
 
 RUN ${PIP} --no-cache-dir install \
-    Pillow \
-    h5py \
+    Pillow==5.3.0 \
+    h5py==2.8.0 \
     keras_applications \
     keras_preprocessing \
-    matplotlib \
+    matplotlib==3.0.0 \
     mock \
-    numpy \
-    scipy \
+    numpy==1.15.3 \
+    scipy==1.1.0 \
     sklearn \
     pandas \
     && test "${USE_PYTHON_3_NOT_2}" -eq 1 && true || ${PIP} --no-cache-dir install \
@@ -121,11 +123,21 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 ENV LD_LIBRARY_PATH /usr/local/cuda/lib64/stubs:$LD_LIBRARY_PATH
 
 WORKDIR /tensorflow
+# new Bazel expects .rc files in different locations:
+# RUN rm .bazelrc
+RUN mv tools/bazel.rc .bazelrc
 
 # NCCL 2.x
 ENV TF_NCCL_VERSION=2
 
 RUN tensorflow/tools/ci_build/builds/configured GPU
+
+#### apply patch, ref: https://github.com/tensorflow/tensorflow/issues/23853
+COPY 0001-TF.patch /tmp/0001-TF.patch
+RUN git config --global user.email "dev@easymile.com"
+RUN git config --global user.name "EasyMile"
+RUN git am /tmp/0001-TF.patch
+
 
 # Compiling .whl as well as c api (avx2 did not show any speed improvements)
 #RUN bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-mfpmath=both --copt=-msse4.2 --config=cuda \

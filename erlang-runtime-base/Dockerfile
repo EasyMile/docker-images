@@ -1,18 +1,15 @@
-FROM alpine:3.8
+FROM alpine:3.9
 
 MAINTAINER frederic.cabestre [at] easymile.com
 
-COPY Easymile-Root-Certificate-Authority-G1.crt /usr/local/share/ca-certificates/
-
 RUN apk add --no-cache --update \
-        ca-certificates=20171114-r3 \
-        libcrypto1.0=1.0.2o-r2 \
-        openssl=1.0.2o-r2 \
-        ncurses-libs=6.1-r0 \
+        ca-certificates=20190108-r0 \
+        libcrypto1.1=1.1.1a-r1	 \
+        openssl=1.1.1a-r1	 \
+        ncurses-libs=6.1_p20190105-r0 \
         bash=4.4.19-r1 \
-        jq=1.6_rc1-r1 \
-        curl=7.61.0-r0 && \
-        rm -rf /var/cache/apk/* && \
-        update-ca-certificates
+        jq=1.6-r0 \
+        curl=7.63.0-r0 && \
+        rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/release/bin/boot"]

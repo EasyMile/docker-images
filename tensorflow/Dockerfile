@@ -3,7 +3,6 @@
 # example of how to run docker:
 # docker run --runtime=nvidia -ti -u $(id -u):$(id -g) -v /home/yannick/:/home/yannick
 
-
 ARG UBUNTU_VERSION=16.04
 
 FROM nvidia/cuda:10.0-devel-ubuntu"${UBUNTU_VERSION}" as base
@@ -55,7 +54,7 @@ ENV TF_CUDNN_VERSION=7
 
 # Check out TensorFlow source code if --build_arg CHECKOUT_TENSORFLOW=1
 ARG CHECKOUT_TF_SRC=0
-RUN test "${CHECKOUT_TF_SRC}" -eq 1 && git clone --branch=r1.12 --depth=1 https://github.com/tensorflow/tensorflow.git /tensorflow
+RUN test "${CHECKOUT_TF_SRC}" -eq 1 && git clone --branch=r1.13 --depth=1 https://github.com/tensorflow/tensorflow.git /tensorflow
 
 ARG USE_PYTHON_3_NOT_2
 ARG _PY_SUFFIX=${USE_PYTHON_3_NOT_2:+3.6}

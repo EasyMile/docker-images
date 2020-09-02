@@ -3,7 +3,7 @@ FROM alpine:3.9
 MAINTAINER frederic.cabestre [at] easymile.com
 
 ENV PATH="/usr/local/asdf/bin:/usr/local/asdf/shims:$PATH" \
-    ASDF_ERLANG_VERSION=21.2.5
+    ASDF_ERLANG_VERSION=23.0.3
 
 WORKDIR /usr/local
 
